@@ -1,0 +1,26 @@
+<%@page import="com.withice.vo.Cart"%>
+<%@page import="com.withice.vo.WishList"%>
+<%@page import="com.withice.dao.WishListDao"%>
+<%@page import="com.withice.dao.CartDao"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="../common/logincheck.jsp"%>
+<%
+	int cartNo = Integer.parseInt(request.getParameter("cart_no"));
+
+
+	//productNo로 프로덕트 찾아서 장바구니 테이블에 삭제
+	//productNo로 위시리스트 찾아서 없을때 인서트
+	
+	CartDao cartDao = new CartDao();
+	Cart cart = cartDao.getCartByCartNo(cartNo);
+	WishList wishList = new WishList();
+	wishList.setProductNo(cart.getProductNo());
+	wishList.setUserId(loginedUserId);
+	
+	WishListDao wishListDao = new WishListDao();
+	wishListDao.insertWishList(wishList);
+	
+	cartDao.deleteCart(cartNo);
+	response.sendRedirect("/withice/order/basket.jsp");
+%>

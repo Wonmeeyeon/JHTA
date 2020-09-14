@@ -1,0 +1,15 @@
+package oop9;
+
+public class CinemaTv {
+	
+	private Speakable monitor;
+	
+	public CinemaTv(Speakable monitor) {
+		this.monitor = monitor;
+	}
+	
+	public void movieWatch() {
+		
+	}
+
+}

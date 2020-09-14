@@ -1,0 +1,146 @@
+<%@page import="java.util.List"%>
+<%@page import="com.withice.dao.ReviewDao"%>
+<%@page import="com.withice.vo.Review"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/withice/css/naviAndFooter.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="/withice/js/navi.js"></script>
+  <style type="text/css">
+  	#question-table tbody td:nth-child(3) a:hover {
+  		color: gray !important;
+  	}
+  	
+  	.breadcrumb {
+  		background-color: white;
+  		padding: 5px;
+  		font-size: 10px;
+  	}
+  	
+  	.breadcrumb a {
+  		color: gray;
+  		text-decoration: none;
+  	}
+  	
+  	
+  	.breadcrumb-item+.breadcrumb-item::before {
+    display: inline-block;
+    padding-right: .5rem;
+    color: #6c757d;
+    content: ">";
+	}
+	
+	.page-link{
+		color: black;
+		font-size: 11px;
+	}
+	.page-link:hover {
+		color: black;
+	}
+	
+	.page-item.active .page-link {
+		z-index: 3;
+	    color: black;;
+	    background-color: lightgray;
+	    border-color: lightgray;
+	}
+	
+	.quickPage {
+		font-size: 13px; 
+		padding: 7px 12px;
+	}
+  </style>
+</head>
+<body>
+<div class="container">
+<%@ include file="../../common/navbar.jsp"%>
+	<div class="row">
+		<div class="col-12">
+			<ul class="breadcrumb float-right">
+				<li class="breadcrumb-item"><a href="../../home.jsp">Home</a></li>			
+				<li class="breadcrumb-item"><a href="">board</a></li>
+			</ul>
+		</div>
+	</div>
+	<%
+		ReviewDao reviewDao = new ReviewDao();
+		List<Review> reviews = reviewDao.getAllReview();
+	
+	%>
+	<div class="row">
+			<div class="col-12">
+			<img alt="main" src="../../images/review/main.jpg" width="100%" class="rounded" />
+			</div>
+	</div>
+	<div class="row">
+		<h5 style="font-size: 16px; padding-left: 17px; padding-bottom: 7px; padding-top: 10px;">상품후기</h5>
+	</div>
+	<div class="row">
+		<p style="font-size: 12px; padding-left: 17px; padding-bottom: 13px; color: gray;">WITHICE 기부상품 구매후기를 남겨주세요 회원가입보다 많이 주는 구매후기 적립금! 글만 있는 후기 > 500점 , 사진과 함께 있는 후기 > 1,000점 (주문번호 한건당 받을 수 있는 최대적립금은 1,500원 입니다.)</p>
+	</div>
+		<div class="row">
+	<div class="col-12">
+		<table id="question-table" class="table table-lg border border-top-0 border-right-0 border-left-0" >
+			<colgroup>
+				<col width="10%">
+				<col width="12%">
+				<col width="*">
+				<col width="5%">
+				<col width="10%">
+				<col width="7%">
+			</colgroup>
+			<thead>
+				<tr>
+					<th  class="font-weight-normal small">NO.</th>
+					<th  class="font-weight-normal small">PRODUCT</th>
+					<th class="font-weight-normal text-center  small">SUBJECT</th>
+					<th class="font-weight-normal small" >NAME</th>
+					<th class="font-weight-normal small" >DATE</th>
+					<th class="font-weight-normal small">VIEW</th>
+				</tr>
+			</thead>
+			<tbody>
+			<%
+		for (Review review : reviews) {
+			if ("Y".equals(review.getDelYn())) {
+		%>
+			<tr>
+				<td><%=review.getReviewNo()%></td>
+				<td colspan="4"><del>삭제된 글입니다.</del></td>
+			</tr>
+		<%
+			} else {
+		%>
+				<tr >
+					<td class="small"><%=review.getReviewNo() %></td>
+					<td class="small"><%=review.getOrderDetailNo() %></td>
+					<td class="small"><a href="view.jsp?questionno=<%=review.getReviewNo()%>" style="color: black; text-decoration: none;" ><%=review.getTitle()%></a></td>
+					<td class="small"><%=review.getUserId() %></td>
+					<td class="small"><%=review.getRegisteredDate() %></td>
+					<td class="small"><%=review.getViewCount()%></td>
+				</tr>
+			<%	
+					}
+				}
+			%>
+			</tbody>
+		</table>
+	
+	</div>
+</div>
+		
+		
+</div>
+<%@ include file="../../common/footer.jsp" %>
+</body>
+</html>
+    

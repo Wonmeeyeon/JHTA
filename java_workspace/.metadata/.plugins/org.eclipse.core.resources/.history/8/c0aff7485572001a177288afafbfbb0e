@@ -1,0 +1,18 @@
+package oop9;
+
+public class NormalTv {
+	
+	private Monitor monitor;	// Monitor류 객체를 담는 멤버변수
+	
+	public NormalTv(Monitor monitor) {	// 생성자 실행할 때 Monitor를 구현한 객체를 전달받겠다. 
+		this.monitor = monitor;			// NormalMonitor, HDMonitor, CinemaMonitor,LCDCinemamonitor를 전달받을 수 있음.
+	}
+	
+	public void watch() {
+		monitor.on();
+		monitor.display();
+		System.out.println();
+		
+	}
+
+}

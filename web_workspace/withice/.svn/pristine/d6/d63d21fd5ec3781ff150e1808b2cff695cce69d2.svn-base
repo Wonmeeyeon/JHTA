@@ -1,0 +1,83 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<div class="navbar navbar-expand fixed-top justify-content-around" style="height: 46px">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="/withice/home.jsp">HOME</a></li>
+				<%
+					if ("Y".equals(loginedYN)) {
+				%>
+				<li class="nav-item"><a class="nav-link" href="/withice/login/logout.jsp">LOGOUT</a></li>
+				<li class="nav-item"><a class="nav-link" href="/withice/member/modify.jsp">MODIFY</a></li>
+				<%
+					} else {
+				%>
+				<li class="nav-item"><a class="nav-link" href="/withice/login/loginform.jsp">LOGIN</a></li>
+				<li class="nav-item"><a class="nav-link" href="/withice/member/join.jsp">JOIN US</a></li>
+				<%
+					}
+				%>
+				<li class="nav-item"><a class="nav-link" href="/withice/order/basket.jsp">CART</a></li>
+				<li class="nav-item"><a class="nav-link" href="/withice/myshop/index.jsp">MY PAGE</a></li>
+				 
+				 <!-- Dropdown -->
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbardrop"
+					data-toggle="dropdown"> COMMUNITY </a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#">공지사항</a>
+						<a class="dropdown-item" href="#">문의게시판</a>
+						<a class="dropdown-item" href="#">상품후기</a>
+						<a class="dropdown-item" href="#">이벤트</a>
+					</div></li>
+					
+				<li class="nav-item"><a class="nav-link" href="#">문의게시판</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">상품후기</a></li>
+            </ul>
+            
+            <!-- 검색바 -->
+			<form class="form-inline" action="/action_page.php">
+				<input class="form-control mr-sm-2" type="text" placeholder="Search">
+				<button class="btn btn-success" type="submit">Search</button>
+			</form>
+		</div>
+		
+        <div style="height: 100px; width:100%; margin-top: 60px; margin-bottom: 20px;">
+            <div class="text-center">
+                <h1><a href="/withice/home.jsp"><img width="500px" height="100px" src="/withice/images/navbar/logo.jpg"/></a></h1>
+            </div>
+        </div>
+		
+		<div class="navbar navbar-expand justify-content-center"  id="nav-menu">
+			<!-- Links -->
+			<ul class="navbar-nav">
+				<!-- Dropdown -->
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">액세서리</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#">Link 1</a> 
+						<a class="dropdown-item" href="#">Link 2</a>
+						<a class="dropdown-item" href="#">Link 3</a>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">의류/잡화</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#">Link 1</a> 
+						<a class="dropdown-item" href="#">Link 2</a>
+						<a class="dropdown-item" href="#">Link 3</a>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">문구/폰케이스</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#">Link 1</a> 
+						<a class="dropdown-item" href="#">Link 2</a>
+						<a class="dropdown-item" href="#">Link 3</a>
+					</div>
+				</li>
+		
+				<li class="nav-item"><a class="nav-link" href="#">이벤트</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">공지사항</a></li>
+			</ul>
+		</div>
+	

@@ -1,0 +1,19 @@
+
+# ADD RECENTLY PRODUCTS
+recently.insertRecently=insert into withice_recently_prouduct \
+						(recently_no,product_no,user_id) \
+						values \
+						(withice_recently_product_seq.nextval,?,?)
+
+# RECENTLY PRODUCTS A=recently B=user C=product
+recently.recentlyProducts=select A.recently_no, C.product_thumbnail, C.product_name, C.product_comment,C.cate_no, C.product_price, C.product_no \
+							 from withice_recently_prouduct A, withice_users B, withice_products C \
+							 where rownum <= 5 \
+							 and A.user_id = b.user_id \
+							 and A.product_no = C.product_no \
+							 and A.user_id = ? \
+							 order by recently_no desc
+
+# DELETE RECENTLY PRODUCTS
+recently.deleteRecently=delete from withice_recently_prouduct \
+						where product_no = ?

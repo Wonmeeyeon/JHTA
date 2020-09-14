@@ -1,0 +1,10 @@
+question.getCategories=select question_cate_no, question_cate_name, question_cate_type \
+						from withice_question_cate \
+						where question_cate_type = 'C' \
+						order by question_cate_no 
+						
+						
+question.getCategoryTitles=select question_cate_no, question_cate_name, question_cate_type \
+						   from withice_question_cate \
+						   where question_cate_type = 'T' \
+						   order by question_cate_no 

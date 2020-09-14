@@ -1,0 +1,3 @@
+mileage.getMileageById = select mileage_no, mileage_content, mileage_registered_date, user_id, get_mileage, mileage_order \
+						 from withice_mileages_info \
+						 where user_id = ?

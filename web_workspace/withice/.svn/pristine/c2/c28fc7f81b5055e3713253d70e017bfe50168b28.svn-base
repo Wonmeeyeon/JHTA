@@ -1,0 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	int productNo = Integer.parseInt(request.getParameter("productno"));
+
+	//productno로 프로덕트 찾아서 장바구니 테이블에 삭제
+%>

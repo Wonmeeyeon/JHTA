@@ -1,0 +1,67 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<div id="footer" class="container-fluid mt-3">
+		<div class="justify-content-between">
+			<ul class="list-group list-group-horizontal" >
+			  <li class="list-group-item">COMPANY</li>
+			  <li class="list-group-item">AGREEMENT</li>
+			  <li class="list-group-item">PRIVACY POLICY</li>
+			  <li class="list-group-item">GUIDE</li>
+			  <li class="list-group-item">CONTACT</li>
+			</ul>
+		</div>
+		<div class="row" id="footer-body" style="border-bottom: 1px solid lightgray;">
+			<div class="col-3">
+			  	<h5>CUSTOMER CENTER</h5>
+			  	<p><i class="fa fa-microphone"></i> 02-3474-6865</p>
+			  	<p>평일 오전10:00~오후4:00(점심 12:00~1:00)</p>
+			  	<p> Sat.Sun.Holiday OFF</p>
+			</div>
+			<div class="col-2 ">
+			  	<h5>ACCOUNT INFO</h5>
+			  	<p>국민 609537-04-000856</p>
+			  	<p>name 승일희망재단</p>
+			  	<p>인터넷뱅킹 바로가기</p>
+			</div>
+			<div class="col-2">
+			  	<h5>FAVORITE MENU</h5>
+			  	<ul class="list-group list-group-flush">
+				  <li class="list-group-item"><a href="/withice/login/loginform.jsp">LOGIN</a></li>
+				  <li class="list-group-item"><a href="/withice/member/join.jsp">JOIN US</a></li>
+				  <li class="list-group-item"><a href="">WISH LIST</a></li>
+				  <li class="list-group-item"><a href="/withice/order/basket.jsp">CART</a></li>
+				  <li class="list-group-item"><a href="">ORDER LIST</a></li>
+				  <li class="list-group-item"><a href="">MY PAGE</a></li>
+				</ul>
+			</div>
+			<div class="col-4">
+			  	<h5>RETURN / EXCHANGE</h5>
+			  	<p>서울시 강남구 강남대로 310, 605호 (역삼동, 유니온센터)</p>
+			  	<p>자세한 교환·반품절차 안내는 문의란 및 공지사항을 참고해주세요</p>
+			  	<ul class="list-group list-group-horizontal" id="icon">
+				  <li class="list-group-item"><a href=""><i class="fa fa-bullhorn" aria-hidden="true"></i></a></li>
+				  <li class="list-group-item"><a href=""><i class="fa fa-comments" aria-hidden="true"></i></a></li>
+				  <li class="list-group-item"><a href=""><i class="fa fa-camera" aria-hidden="true"></i></a></li>
+				  <li class="list-group-item"><a href=""><i class="fa fa-credit-card-alt" aria-hidden="true"></i></a></li>
+				  <li class="list-group-item"><a href=""><i class="fa fa-tags" aria-hidden="true"></i></a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-12" id="footer-info" style="margin-top: 10px;">
+				<p>
+					COMPANY : 승일희망재단  	OWNER : 박승일,로션김  		BUSINESS LICENSE : 220-82-09538  	MALL-ORDER LICENSE : 2016-서울강남-02482
+				</p>
+				<p>
+					ADDRESS : 06253 서울특별시 강남구 강남대로 310 (역삼동) 605호			TEL : 02-3474-6865FAX : 02-3453-6871
+				</p>
+				<p>
+					CPO : 박성자 (sihope@sihope.or.kr)     	CONTACT US : withice@sihope.or.kr
+				</p>
+				<p>
+					COPYRIGHT © WITHICE [위드아이스] ALL RIGHTS RESERVED. HOSTING By CAFE24 | DESIGNED By DFLOOR
+				</p>
+			</div>
+		</div>
+	</div>

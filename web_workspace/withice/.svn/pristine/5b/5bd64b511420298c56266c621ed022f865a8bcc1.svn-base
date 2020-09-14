@@ -1,0 +1,85 @@
+<%@page import="com.withice.vo.Pagenation"%>
+<%@page import="com.withice.vo.ProductTag"%>
+<%@page import="com.withice.vo.Product"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.withice.dao.ProductDao"%>
+<%@page import="com.withice.dto.CategoryAndCnt"%>
+<%@page import="com.withice.util.NumberUtil"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/withice/css/naviAndFooter.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="/withice/js/navi.js"></script>
+  <style type="text/css">
+  	.breadcrumb {
+  		background-color: white;
+  		padding: 5px;
+  		font-size: 10px;
+  	}
+  	
+  	.breadcrumb a {
+  		color: gray;
+  		text-decoration: none;
+  	}
+  	
+  	
+  	.breadcrumb-item+.breadcrumb-item::before {
+    display: inline-block;
+    padding-right: .5rem;
+    color: #6c757d;
+    content: ">";
+	}
+	
+	.page-link{
+		color: black;
+		font-size: 11px;
+	}
+	.page-link:hover {
+		color: black;
+	}
+	
+	.page-item.active .page-link {
+		z-index: 3;
+	    color: black;;
+	    background-color: lightgray;
+	    border-color: lightgray;
+	}
+	
+  </style>
+</head>
+<body>
+<%@ include file="../common/navbar.jsp"%>
+<div class="container">
+	<!-- 현재위치 -->
+	<div class="row">
+		<div class="col-12">
+			<ul class="breadcrumb float-right">
+				<li class="breadcrumb-item"><a href="../home.jsp">Home</a></li>
+			<%  
+				int cateNo = NumberUtil.stringToInt(request.getParameter("cateno"));
+				Category category = categoryDao.getCategoryWithMain(cateNo);
+			%>					
+				<li class="breadcrumb-item"><a href="productList.jsp?cateno=<%=category.getMainCateNo() %>" style="color: black;"><%=category.getMainCateName() %></a></li>
+			</ul>
+		</div>
+	</div>
+	<!-- 현재위치 -->
+	<!-- 상품 상세정보 시작 -->
+	<!-- 상품 간략 정보 -->
+	<div>
+	
+	</div>
+</div>
+<%@ include file="../common/footer.jsp" %>
+</body>
+</html>

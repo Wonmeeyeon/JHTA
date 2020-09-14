@@ -1,0 +1,15 @@
+package oop9;
+
+public class CinemaTv {
+	
+	private Speakable monitor;
+	
+	public CinemaTv(Speakable monitor) {	// 생성자 실행할 때 //Speakable를 구현한 객체를 전달받겠다.
+		this.monitor = monitor;				// CinemaMonitoer, LCDMonitor를 전달받을 수 있음
+	}
+	
+	public void movieWatch() {
+		
+	}
+
+}

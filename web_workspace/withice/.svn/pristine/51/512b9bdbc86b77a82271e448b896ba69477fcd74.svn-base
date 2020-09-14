@@ -1,0 +1,214 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <title>mypage</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/withice/css/naviAndFooter.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="/withice/js/navi.js"></script>
+</head>
+<body>
+<%@ include file="../common/navbar.jsp"%>
+	<div class="container">
+		<div class="body">
+		<div class="text-right">
+			<p>Home > <span title="현재 페이지">My Page</span></p>
+		</div>
+		<div>
+			<div class="row">
+				<div class="col-12">
+					<h2>MY PAGE</h2>
+				</div>
+			</div>
+		</div>
+		<p></p>
+			<div class="row">
+				<div class="col-2">
+					<img src="Penguins.jpg" alt="userprofile" width="160px;" height="150px;" class="img-thumbnail"/>
+				</div>
+				<div class="col-10">
+					<strong>홍길동</strong>
+					<hr />
+					<div class="row">
+						<div class="col-2">회원등급
+							<div>기부천사</div>
+						</div>
+						<div class="col-2">적립금
+							<div>1,000원</div>
+						</div>
+						<div class="col-8">구매건수
+							<div>0건</div>
+						</div>
+					</div>
+					<hr />
+					<div class="row">
+						<div class="col-2">
+							<a href="modifyform.jsp" class="btn btn-outline-dark btn-sm">프로필 수정</a>
+						</div>
+						<div class="col-10">
+							<a href="#" class="btn btn-outline-dark btn-sm">배송주소록 관리</a>
+						</div>
+					</div>
+				</div>
+			</div>	
+		<hr />
+			<div class="row">
+				<div class="col-md-2">
+					회원님의 혜택정보
+				</div>
+				<div class="col-md-10">
+					기부천사 등급은 다음과 같은 추가 혜택이 있습니다.
+				</div>
+			</div>
+		<hr />
+		<div>
+			<h5><strong>Mileage Point</strong></h5>
+		</div>
+			<div class="row">
+				<div class="col-6">
+					<ul>
+						<li>
+							<strong>가용적립금</strong>
+							<strong style="text-align:right;">&nbsp;1,000원</strong>
+						</li>
+						<li>사용적립금</li>
+						<li>쿠폰</li>
+					</ul>
+				</div>
+				<div class="col-6">
+					<ul>
+						<li>총적립금</li>
+						<li>주문</li>
+					</ul>
+				</div>
+			</div>
+		<hr />
+		<div>
+			<div class="row">
+				<div class="col-11"><h5><strong>Order List</strong></h5></div>
+				<div class="col-1">+more</div>
+			</div>
+		</div>
+		<div>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>주문일자</th>
+						<th>주문번호</th>
+						<th>이미지</th>
+						<th>상품정보</th>
+						<th>수량</th>
+						<th>상품구매금액</th>
+						<th>주문처리상태</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>얄롤리</td>
+						<td>얄롤리</td>
+						<td>얄롤리</td>
+						<td>얄롤리</td>
+						<td>얄롤리</td>
+						<td>얄롤리</td>
+						<td>얄롤리</td>
+					</tr>
+					<tr>
+						<td>얄롤리</td>
+						<td>얄롤리</td>
+						<td>얄롤리</td>
+						<td>얄롤리</td>
+						<td>얄롤리</td>
+						<td>얄롤리</td>
+						<td>얄롤리</td>
+					</tr>
+					<tr>
+						<td>얄롤리</td>
+						<td>얄롤리</td>
+						<td>얄롤리</td>
+						<td>얄롤리</td>
+						<td>얄롤리</td>
+						<td>얄롤리</td>
+						<td>얄롤리</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+			<div class="row">
+				<div class="col-11"><h5><strong>Recently Viewed</strong></h5></div>
+				<div class="col-1">+more</div>
+			</div>
+			<div class="row">
+				<div class="col-2">
+					<div class="card">
+						<img src="../images/userimage/img_member_default.gif">
+						<div class="card-body">
+							<p>내용</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-2">
+					<div class="card">
+						<img src="../images/userimage/img_member_default.gif">
+						<div class="card-body">
+							<p>내용</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-2">
+					<div class="card">
+						<img src="../images/userimage/img_member_default.gif">
+						<div class="card-body">
+							<p>내용</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-2">
+					<div class="card">
+						<img src="../images/userimage/img_member_default.gif">
+						<div class="card-body">
+							<p>내용</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		<div>
+				<div class="row">
+					<div class="col-11"><h5><strong>My Board</strong></h5></div>
+					<div class="col-1">+more</div>
+				</div>
+			</div>
+			<div class="table">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>번호</th>
+							<th>분류</th>
+							<th>제목</th>
+							<th>작성자</th>
+							<th>작성일</th>
+							<th>조회</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>no data</td>
+							<td>no data</td>
+							<td>no data</td>
+							<td>no data</td>
+							<td>no data</td>
+							<td>no data</td>
+						</tr>
+					</tbody>
+				</table>
+		</div>
+	</div>
+</div>
+<%@ include file="../common/footer.jsp" %>
+</body>
+</html>

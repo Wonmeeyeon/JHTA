@@ -1,0 +1,22 @@
+package kr.co.jhta.di.service.step5;
+
+import kr.co.jhta.di.service.Output;
+
+public class Reporter {
+	
+	private Output output;
+	
+	// Output객체를 전달받는 setter 메소드
+	public void setOutput(Output output) {
+		this.output = output;
+	}
+	
+	// 기본생성자
+	public Reporter() {}
+	
+	// Output객체를 전달받는 생성자
+	public Reporter(Output output) {
+		this.output = output;
+	}
+
+}

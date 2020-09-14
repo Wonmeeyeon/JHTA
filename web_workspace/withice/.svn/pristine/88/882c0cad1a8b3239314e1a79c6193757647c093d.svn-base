@@ -1,0 +1,5 @@
+package com.withice.vo;
+
+public class Order {
+
+}

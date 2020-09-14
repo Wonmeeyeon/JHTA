@@ -1,0 +1,16 @@
+package kr.co.jhta.di.service.step3;
+
+import kr.co.jhta.di.service.ConsoleOutput;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		
+		ConsoleOutput consoleOutput = new ConsoleOutput();
+		
+		Reporter reporter  = new Reporter();
+		reporter.setOutput(consoleOutput);
+		
+		reporter.report("인터페이스 의존", "직접 의존하는 객체를 생성하지 않는다.");
+	}
+}

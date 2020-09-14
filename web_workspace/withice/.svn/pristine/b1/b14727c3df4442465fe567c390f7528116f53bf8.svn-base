@@ -1,0 +1,56 @@
+package com.withice.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.withice.util.ConnectionUtil;
+import com.withice.util.QueryUtil;
+import com.withice.vo.User;
+
+public class UserDao {
+
+	public void registerUser(User user) throws SQLException {
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("user.registerUser"));
+		
+		pstmt.setString(1, user.getId());
+		pstmt.setString(2, user.getPassword());
+		pstmt.setString(3, user.getName());
+		pstmt.setString(4, user.getTelephone());
+		pstmt.setString(5, user.getPhone());
+		pstmt.setString(6, user.getSnsCheck());
+		pstmt.setString(7, user.getEmail());
+		pstmt.setString(8, user.getGender());
+		pstmt.setString(9, user.getBirth());
+		pstmt.setString(10, user.getLocation());
+		
+		pstmt.executeUpdate();
+		
+		pstmt.close();
+		connection.close();
+	}
+	
+	public User getUserSimpleInfo(String userId) throws SQLException {
+		User user = null;
+		
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("user.getUserSimpleInfo"));
+		pstmt.setString(1, userId);
+		ResultSet rs = pstmt.executeQuery();
+		
+		if (rs.next()) {
+			user = new User();
+			user.setId(rs.getString("user_id"));
+			user.setPassword(rs.getString("user_password"));
+			user.setName(rs.getString("user_name"));
+		}
+		
+		rs.close();
+		pstmt.close();
+		connection.close();
+		
+		return user;
+	}
+}

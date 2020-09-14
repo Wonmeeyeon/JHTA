@@ -1,0 +1,308 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/withice/css/naviAndFooter.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="/withice/js/navi.js"></script>
+  <style>
+  	th{
+  	background-color: lightgray;
+  	}
+  	a {
+	color : black;
+	text-decoration: none;
+	}
+	a:hover {
+	color: black;
+	}
+  </style>
+</head>
+<body>
+<%@ include file="../common/navbar.jsp"%>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-right">
+			<a href="../home.jsp">Home</a> <span title="현재 위치"> > Order Sheet</span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<p style="padding-top: 20px;">ORDER SHEET</p>
+			<div class="row">
+				<div class="col-12"></div>
+				<table class="table table-bordered table-active">
+					<tr>
+						<th class="text-center" rowspan="3" style="padding-top: 30px;">혜택정보</th>
+						<td>
+							user.getusername 님은, [+user.getgrade+] 회원이십니다. <br /> 
+						</td>
+					</tr>
+					<tr>
+						<td>가용 적립금 : user.getusablemileage</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+			<div class="col-12">
+				<p style="padding-top: 20px; font-weight: bold; font-size: 15px;">주문내역</p>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<table class="table text-center" style="width: 1125px;">
+						<thead>
+							<tr>
+								<th ><input class="align-middle" type="checkbox" onchange="toggleChecked()" name="checkall"/></th>
+								<th>이미지</th>
+								<th colspan="5">상품정보</th>
+								<th>판매가</th>
+								<th>수량</th>
+								<th>적립금</th>
+								<th>배송구분</th>
+								<th>배송비</th>
+								<th>합계</th>
+							</tr>
+						</thead>
+						<tbody>
+						<!-- 반복문 시작 -->
+							<tr>
+								<td style="vertical-align: middle !important;"><input type="checkbox" onchange="changeAllCheckbox()" name="no" value="productno"/></td>
+								<td style="vertical-align: middle !important;"><a href="product/detail.jsp?product_no=?"><img src="../images/navbar/1.jpg" alt="" width="80" height="80" /></a></td>
+								<td style="vertical-align: middle !important;" colspan="5">
+									<a href="product/detail.jsp?product_no=?">product.getproductname()</a>
+								</td>
+								<td style="vertical-align: middle !important;"><!-- product.getproductprice() -->1000원</td>
+								<td style="vertical-align: middle !important;"><!-- product.getproductstock() <-->1</td>
+								<td style="vertical-align: middle !important;">-</td>
+								<td style="vertical-align: middle !important;">기본배송</td>
+								<td style="vertical-align: middle !important;">무료</td>
+								<td style="vertical-align: middle !important;">price() * stock()</td>
+							</tr>
+						<!-- 반복문 끝 -->
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-3">
+				<span>[기본배송]</span>
+			</div>
+			<div class="col-9 text-right">
+			<!-- 반복문 시작 -->
+				<span>상품구매금액 <!-- price() * stock() 다더해 -->20000 + 배송비 무료 = 합계 : 20000원</span>
+			<!-- 반복문 끝 -->
+			</div>			
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<h6 style="color: red; font-size: 12px;"><span class="badge badge-danger">!</span>상품의 옵션 및 수량 변경은 상품상세 또는 장바구니에서 가능합니다.</h6>
+			</div>
+		</div>
+		<div class="row mb-5">
+			<div class="col-12">
+				<span style="font-weight: bold; font-size: 12px;">선택상품을</span>
+				<button class="btn btn-secondary btn-sm" type="button" onclick="removeCheckedCart()">삭제하기</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="row">
+					<div class="col-10">
+						<h6 style="font-weight: bold; font-size: 14px;">주문정보 </h6>
+					</div>
+					<div class="col-2 text-right">
+						<span style="font-size: 10px;"><img src="../images/userimage/circle-16.png" width="5px;" height="5px;"/> 필수입력사항</span>
+					</div>
+				</div>
+ 				<table class="table table-bordered" style="font-size: 13px;">
+ 					<tbody>
+ 						<tr>
+ 							<th class="">주문하시는분 <img src="../images/userimage/circle-16.png" width="5px;" height="5px;"/></th>
+ 							<td><input type="text" name="userid" id="textbox" /></td>
+ 						</tr>
+ 						<tr>
+ 							<th>주소 <img src="../images/userimage/circle-16.png" width="5px;" height="5px;"/></th>
+ 							<td>
+ 								<input type="text" id="sample4_postcode"  style="width: 100px;">
+ 								<input class="btn btn-outline-secondary btn-sm" type="button" onclick="sample4_execDaumPostcode()" value="주소 검색"><br>
+ 								<input type="text" id="sample4_roadAddress" style="width: 300px;"> 기본주소<br>
+								<span id="guide" style="color:#999;display:none"></span>
+								<input type="text" id="sample4_detailAddress" style="width: 300px;"> 나머지주소
+ 							</td>
+ 						</tr>
+ 						<tr>
+ 							<th>일반전화</th>
+ 							<td><select name="tel1">
+	 								<option value="1">02</option>
+	 								<option value="2">031</option>
+	 								<option value="3">032</option>
+	 								<option value="4">033</option>
+	 								<option value="5">041</option>
+	 								<option value="6">042</option>
+	 								<option value="7">043</option>
+	 								<option value="8">051</option>
+				 					<option value="9">052</option>
+				 					<option value="10">053</option>
+				 					<option value="11">054</option>
+				 					<option value="12">055</option>
+				 					<option value="13">061</option>
+				 					<option value="14">062</option>
+				 					<option value="15">063</option>
+				 					<option value="16">064</option>
+				 					<option value="17">0502</option>
+				 					<option value="18">0503</option>
+				 					<option value="19">0504</option>
+				 					<option value="20">0505</option>
+				 					<option value="21">0506</option>
+				 					<option value="22">0507</option>
+				 					<option value="23">070</option>
+				 					<option value="24">010</option>
+				 					<option value="25">011</option>
+				 					<option value="26">016</option>
+				 					<option value="27">017</option>
+				 					<option value="28">018</option>
+				 					<option value="29">019</option>
+				 					<option value="30">0508</option>
+ 								</select> -
+			 					<input type="text" name="tel2" style="width: 70px; height: 25px;"/> -
+			 					<input type="text" name="tel3" style="width: 70px; height: 25px;"/>
+			 				</td>
+ 						</tr>
+	 					<tr>
+	 						<th>휴대전화 <img src="../images/userimage/circle-16.png" width="5px;" height="5px;"/></th>
+	 						<td><select name="cell1">
+	 							<option value="1">010</option>
+	 							<option value="2">011</option>
+	 							<option value="3">016</option>
+	 							<option value="4">017</option>
+	 							<option value="5">018</option>
+	 							<option value="6">019</option>
+	 						</select> -
+	 						<input type="text" name="cell2" style="width: 50px; height: 25px;"/> -
+	 						<input type="text" name="cell3" style="width: 50px; height: 25px;"/>
+	 						</td>
+	 					</tr>
+	 					<tr>
+	 						<th>이메일 <img src="../images/userimage/circle-16.png" width="5px;" height="5px;"/></th>
+	 						<td>
+	 							<input type="text" name="email" id="textbox" />
+	 							<div style="font-size: 10px; margin: 0; color: gray;">
+		 							<p style="margin-bottom: 0;">이메일을 통해 주문처리과정을 보내드립니다.</p>
+		 							<p>이메일 주소란에는 반드시 수신가능한 이메일주소를 입력해 주세요</p>
+	 							</div>
+	 						</td>
+	 					</tr>
+ 					</tbody>
+ 				</table>
+			</div>
+		</div>
+		<div class="row mt-3">
+			<div class="col-12">
+				<div class="row">
+					<div class="col-10">
+						<h6 style="font-weight: bold; font-size: 14px;">배송정보 </h6>
+					</div>
+					<div class="col-2 text-right">
+						<span style="font-size: 10px;"><img src="../images/userimage/circle-16.png" width="5px;" height="5px;"/> 필수입력사항</span>
+					</div>
+				</div>
+ 				<table class="table table-bordered" style="font-size: 13px;">
+ 					<tbody>
+ 						<tr>
+ 							<th style="background: lightgray;">배송지선택 <img src="../images/userimage/circle-16.png" width="5px;" height="5px;"/></th>
+ 							<td>
+ 								<input type="radio" name="1" />주문자 정보와 동일
+ 								<input type="radio" name="1" style="margin-left: 20px;" />새로운 배송지
+ 								<button class="btn btn-secondary btn-sm">주소록 보기</button>
+ 							</td>
+ 						</tr>
+ 						<tr>
+ 							<th class="">받으시는분 <img src="../images/userimage/circle-16.png" width="5px;" height="5px;"/></th>
+ 							<td><input type="text" name="userid" id="textbox" /></td>
+ 						</tr>
+ 						<tr>
+ 							<th>주소 <img src="../images/userimage/circle-16.png" width="5px;" height="5px;"/></th>
+ 							<td>
+ 								<input type="text" id="sample4_postcode"  style="width: 100px;">
+ 								<input class="btn btn-outline-secondary btn-sm" type="button" onclick="sample4_execDaumPostcode()" value="주소 검색"><br>
+ 								<input type="text" id="sample4_roadAddress" style="width: 300px;"> 기본주소<br>
+								<span id="guide" style="color:#999;display:none"></span>
+								<input type="text" id="sample4_detailAddress" style="width: 300px;"> 나머지주소
+ 							</td>
+ 						</tr>
+ 						<tr>
+ 							<th>일반전화</th>
+ 							<td><select name="tel1">
+	 								<option value="1">02</option>
+	 								<option value="2">031</option>
+	 								<option value="3">032</option>
+	 								<option value="4">033</option>
+	 								<option value="5">041</option>
+	 								<option value="6">042</option>
+	 								<option value="7">043</option>
+	 								<option value="8">051</option>
+				 					<option value="9">052</option>
+				 					<option value="10">053</option>
+				 					<option value="11">054</option>
+				 					<option value="12">055</option>
+				 					<option value="13">061</option>
+				 					<option value="14">062</option>
+				 					<option value="15">063</option>
+				 					<option value="16">064</option>
+				 					<option value="17">0502</option>
+				 					<option value="18">0503</option>
+				 					<option value="19">0504</option>
+				 					<option value="20">0505</option>
+				 					<option value="21">0506</option>
+				 					<option value="22">0507</option>
+				 					<option value="23">070</option>
+				 					<option value="24">010</option>
+				 					<option value="25">011</option>
+				 					<option value="26">016</option>
+				 					<option value="27">017</option>
+				 					<option value="28">018</option>
+				 					<option value="29">019</option>
+				 					<option value="30">0508</option>
+ 								</select> -
+			 					<input type="text" name="tel2" style="width: 70px; height: 25px;"/> -
+			 					<input type="text" name="tel3" style="width: 70px; height: 25px;"/>
+			 				</td>
+ 						</tr>
+	 					<tr>
+	 						<th>휴대전화 <img src="../images/userimage/circle-16.png" width="5px;" height="5px;"/></th>
+	 						<td><select name="cell1">
+	 							<option value="1">010</option>
+	 							<option value="2">011</option>
+	 							<option value="3">016</option>
+	 							<option value="4">017</option>
+	 							<option value="5">018</option>
+	 							<option value="6">019</option>
+	 						</select> -
+	 						<input type="text" name="cell2" style="width: 50px; height: 25px;"/> -
+	 						<input type="text" name="cell3" style="width: 50px; height: 25px;"/>
+	 						</td>
+	 					</tr>
+	 					<tr>
+	 						<th>배송메시지</th>
+	 						<td>
+	 							<textarea name="massage" id="" cols="100" rows="3"></textarea>
+	 						</td>
+	 					</tr>
+ 					</tbody>
+ 				</table>
+			</div>
+		</div>
+</div>
+<%@ include file="../common/footer.jsp" %>
+</body>
+</html>

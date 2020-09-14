@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	#thumbnail-box img {opacity: 0.3;}
+	#thumbnail-box img:hover{opacity: 0.6;}
+</style>
+</head>
+<body>
+	<h1>특정 이벤트 관련 기본동작 실행의 방해</h1>
+	<div id="gallary-box">
+		<img id="gallary" src="image/1.jpg" width="340" height="340"/>
+	</div>
+	<div id="thumbnail-box">
+		<a href="image/1.jpg" onclick="changeImage(event)"><img src="image/1.jpg" width="120" height="120" /></a>
+		<a href="image/2.jpg" onclick="changeImage(event)"><img src="image/2.jpg" width="120" height="120" /></a>
+		<a href="image/3.jpg" onclick="changeImage(event)"><img src="image/3.jpg" width="120" height="120" /></a>
+		<a href="image/4.jpg" onclick="changeImage(event)"><img src="image/4.jpg" width="120" height="120" /></a>
+		<a href="image/5.jpg" onclick="changeImage(event)"><img src="image/5.jpg" width="120" height="120" /></a>
+		<a href="image/6.jpg" onclick="changeImage(event)"><img src="image/6.jpg" width="120" height="120" /></a>
+	</div>
+	<script type="text/javascript">
+		function changeImage(event) {
+			
+		}
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+# INSERT MAIN ORDER
+order.insertOrder=insert into withice_order \
+				  (order_no, order_price,user_id) \
+				  values \
+				  (withice_order_seq.nextval,?,?)
+# INSERT ORDER DETAIL
+order.insertOrderDetail=insert into withice_order_detail \
+						(order_detail_no, order_detail_price, order_amount, product_no, order_no) \
+						values \
+						(withice_order_detail_seq.nextval,?,?,?,?)
+# INSERT ORDER ADDRESS
+order.insertOrderAddress=insert into withice_order_address \
+						 (address_order_no, address_postal_code, address_main, address_sub, address_phone \
+						 ,address_receiver, address_content, order_no) \
+						 values \
+						 (withice_order_address_seq.nextval,?,?,?,?,?,?,?)
+						 
+# GET ORDER BY ROWNUM
+order.getOrderNoByUserIdRownum=select * \
+							   from withice_order \
+							   where rownum = 1 \
+							   and user_id = ? \
+							   order by order_no desc
+# GET ORDER BY USERID
+order.getOrderByUserId=select A.order_status, A.order_registered_date, A.order_no as ono,A.user_id, \
+							  B.order_detail_price, B.order_amount, B.product_no as pno, B.order_detail_no, \
+							  C.cate_no, C.product_thumbnail, C.product_name, B.order_detail_price \
+					   from withice_order A, withice_order_detail B, withice_products C \
+					   where A.user_id = ? \
+					   and A.order_no = B.order_no \
+					   and B.product_no = C.product_no 
+					   

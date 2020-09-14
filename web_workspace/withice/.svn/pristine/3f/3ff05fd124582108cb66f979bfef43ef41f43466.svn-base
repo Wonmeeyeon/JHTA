@@ -1,0 +1,84 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/withice/css/naviAndFooter.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="/withice/js/navi.js"></script>
+  <style>
+  	a {
+	color : black;
+	text-decoration: none;
+	}
+	a:hover {
+	color: black;
+	}
+  </style>
+</head>
+<body>
+<%@ include file="../common/navbar.jsp"%>
+<div class="container">
+	<div class="row">
+			<div class="col-md-12 text-right">
+				<a href="../home.jsp">Home</a> <span title="현재 위치"> > Recently Viewed</span>
+			</div>
+		</div>
+	<div class="row">
+		<div class="col-12">
+			<span style="font-size: 15px; font-weight: 400; letter-spacing: 1.5px;">RECENTRY VIEWED</span>
+		</div>
+	</div>
+	<div class="row">
+				<div class="col-12">
+					<table class="table text-center" style="width: 1125px;">
+						<thead>
+							<tr>
+								<th>이미지</th>
+								<th colspan="5">상품명</th>
+								<th colspan="2">상품설명</th>
+								<th>판매가</th>
+								<th colspan="2">주문</th>
+							</tr>
+						</thead>
+						<tbody>
+						<!-- 반복문 시작 -->
+							<tr>
+								<td style="vertical-align: middle !important;"><a href="product/detail.jsp?product_no=?"><img src="../images/navbar/1.jpg" alt="" width="80" height="80" /></a></td>
+								<td style="vertical-align: middle !important;" colspan="5">
+									<a href="product/detail.jsp?product_no=?">product.getproductname()</a>
+								</td>
+								<td style="vertical-align: middle !important;" colspan="2">
+									상품설명 어쩌구저쩌구
+								</td>
+								<td style="vertical-align: middle !important;"><!-- product.getproductprice() -->1000원</td>
+								<td style="vertical-align: middle !important;" colspan="2">
+									<div class="btn-group-vertical">
+									  <a href="/order/addbasket.jsp?product_no=?" class="btn btn-outline-secondary btn-sm" role="button">담기</a>
+									  <button type="button" class="btn btn-outline-secondary btn-sm" onclick="addWishlist(100)">주문</button>
+									  <button type="button" class="btn btn-outline-secondary btn-sm" onclick="deleteCart(100)">삭제</button>
+									</div>
+								</td>
+							</tr>
+						<!-- 반복문 끝 -->
+						</tbody>
+					</table>
+					<!-- 최근본 상품내역이없습니다. (if문) -->
+				</div>
+			</div>
+		</div>
+	<div class="row">
+		<div class="col-12 mb-5">
+			<span>페이징 처리할거임</span>
+		</div>
+	</div>
+
+	<%@ include file="../common/footer.jsp" %>
+</body>
+</html>

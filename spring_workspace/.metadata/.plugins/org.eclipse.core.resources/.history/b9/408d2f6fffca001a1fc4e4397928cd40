@@ -1,0 +1,3 @@
+instances=kr.co.jhta.di.service.ConsoleOutput,kr.co.jhta.di.service.step4.Reporter
+directory=c:/temp
+filename=step4.txt

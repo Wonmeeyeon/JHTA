@@ -1,0 +1,9 @@
+package oop9;
+
+public class CinemaTv {
+	
+	public void movieWatch() {
+		
+	}
+
+}

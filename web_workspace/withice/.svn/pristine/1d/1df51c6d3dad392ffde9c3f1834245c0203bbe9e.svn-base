@@ -1,0 +1,30 @@
+managerBoard.getCateByNo = select * \
+							from withice_manager_board_cate \
+							where manager_board_cate_no = ?
+							
+managerBoard.gerCates = select * \
+						from withice_manager_board_cate
+						
+					
+managerBoard.insertBoard = insert into withice_manager_board (manager_board_no, manager_board_content, manager_board_cate_no, manager_board_title  ,user_id) \
+							values (WITHICE_MANAGER_SEQ.nextval, ? ,? , ?, ?)
+							
+managerBoard.getManagerBoardByNo=select a.manager_board_no, a.manager_board_title, a.manager_board_content, a.manager_board_view_count \
+    								  , a.manager_board_registered_date, b.manager_board_cate_name, a.user_id, b.manager_board_cate_no \
+								 from withice_manager_board A, withice_manager_board_cate B \
+								 where a.manager_board_cate_no = b.manager_board_cate_no \
+								 and a.manager_board_no = ?
+								 
+managerBoard.updateManagerBoardByNo=update withice_manager_board \
+									set \
+										manager_board_title = ?, \
+										manager_board_content = ?, \
+										manager_board_view_count = ? \
+									where manager_board_no = ?
+									
+managerBoard.getTopfive = select ROWNUM, MANAGER_BOARD_NO, MANAGER_BOARD_TITLE, MANAGER_BOARD_CONTENT, MANAGER_BOARD_VIEW_COUNT, MANAGER_BOARD_REGISTERED_DATE, USER_ID, MANAGER_BOARD_CATE_NO \
+							from ( select * \
+							from withice_manager_board \
+							order by MANAGER_BOARD_NO desc) \
+							where ROWNUM <=5;
+    								

@@ -1,0 +1,273 @@
+<%@page import="com.withice.dto.CartDetailDto"%>
+<%@page import="java.util.List"%>
+<%@page import="com.withice.dao.CartDao"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/withice/css/naviAndFooter.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="withice.js"></script>
+   <script src="/withice/js/navi.js"></script>
+<style type="text/css">
+div.col-md-12 {
+	font-size: 12px;
+}
+.row {
+	padding-top: 20px;
+}
+.col-md-12 > a {
+	color: gray;
+	text-decoration: none;
+}
+a {
+	color : black;
+	text-decoration: none;
+}
+a:hover {
+	color: black;
+}
+table {
+	font-size: 12px;
+}
+h6 {
+	font-size: 10px;
+}
+</style>
+</head>
+<body>
+	<%@ include file="../common/navbar.jsp"%>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-right">
+				<a href="../home.jsp">Home</a> <span title="현재 위치"> > Cart</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<p style="padding-top: 20px;">CART</p>
+				<div class="row">
+					<div class="col-12"></div>
+					<table class="table table-bordered table-active">
+						<tr>
+							<th class="text-center" rowspan="3" style="padding-top: 30px;">혜택정보</th>
+							<td>
+								user.getuserName 님은, [+user.getgrade+] 회원이십니다. <br /> 
+							</td>
+						</tr>
+						<tr>
+							<td>가용 적립금 : user.getusablemileage</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<p style="padding-top: 20px; font-weight: bold; font-size: 12px;">일반상품 (products.legnth)</p>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<table class="table text-center" style="width: 1125px;">
+						<thead>
+							<tr>
+								<th ><input class="align-middle" type="checkbox" onchange="toggleChecked()" name="checkall"/></th>
+								<th>이미지</th>
+								<th colspan="5">상품정보</th>
+								<th>판매가</th>
+								<th>수량</th>
+								<th>적립금</th>
+								<th>배송구분</th>
+								<th>배송비</th>
+								<th>합계</th>
+								<th colspan="2">선택</th>
+							</tr>
+						</thead>
+						<tbody>
+					<%
+						CartDao cartDao = new CartDao();
+						List<CartDetailDto> details = cartDao.getCartDetail(loginedUserId);
+						if(!details.isEmpty()){
+							
+							for(CartDetailDto detail : details){
+							
+					%>
+						<!-- 반복문 시작 -->
+							<tr>
+								<td style="vertical-align: middle !important;"><input type="checkbox" onchange="changeAllCheckbox()" name="no" value="productno"/></td>
+								<td style="vertical-align: middle !important;">
+									<a href="product/detail.jsp?product_no=<%=detail.getProductNo()%>"><img src="../images/navbar/<%=detail.getProductThumbnail() %>" alt="" width="80" height="80" />
+									</a>
+								</td>
+								<td style="vertical-align: middle !important;" colspan="5">
+									<a href="product/detail.jsp?product_no=?"><%=detail.getProductName() %></a>
+								</td>
+								<td style="vertical-align: middle !important;"><%=detail.getProductPrice() %></td>
+								<td style="vertical-align: middle !important;"><%=detail.getProductAmount() %></td>
+								<td style="vertical-align: middle !important;">-</td>
+								<td style="vertical-align: middle !important;">기본배송</td>
+								<td style="vertical-align: middle !important;">무료</td>
+								<td style="vertical-align: middle !important;"><%=detail.getProductPrice() * detail.getProductAmount() %></td>
+								<td style="vertical-align: middle !important;" colspan="2">
+									<div class="btn-group-vertical">
+									  <a href="/order/orderform.jsp?product_no=?" class="btn btn-secondary btn-sm" role="button">주문하기</a>
+									  <button type="button" class="btn btn-outline-secondary btn-sm" onclick="addWishlist(100)">관심상품등록</button>
+									  <button type="button" class="btn btn-outline-secondary btn-sm" onclick="deleteCart(100)">삭제</button>
+									</div>
+								</td>
+							</tr>
+					<%
+							}
+						} else {
+							
+					
+					%>
+						<tr>
+							<td colspan="15">장바구니가 비어 있습니다.</td>
+						</tr>
+						<!-- 반복문 끝 -->
+						</tbody>
+					</table>
+					<% 
+						}  
+					%>		
+				</div>
+			</div>
+		</div>
+		<%
+			if(!details.isEmpty()){
+				
+		%>
+		<div class="row">
+			<div class="col-3">
+				<span>[기본배송]</span>
+			</div>
+			<div class="col-9 text-right">
+			<!-- 반복문 시작 -->
+				<span>상품구매금액 <!-- price() * stock() 다더해 -->20000 + 배송비 무료 = 합계 : 20000원</span>
+			<!-- 반복문 끝 -->
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-6">
+				<button class="btn btn-secondary btn-sm" type="button" onclick="removeCheckedCart()">삭제하기</button>
+				<button class="btn btn-outline-secondary btn-sm" type="button" onclick="addWishListWithChecked(100)">관심상품등록</button>
+			</div>
+			<div class="col-6 text-right">
+				<button class="btn btn-outline-secondary btn-sm" type="button" onclick="removeAllCarts()">장바구니 비우기</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<table class="table text-center">
+					<thead>
+						<tr>
+							<th>총 상품금액</th>
+							<th>총 배송비</th>
+							<th>결제예정금액</th>
+						</tr>
+					</thead>
+					<tbody>
+					<!-- 반복문 시작 -->
+						<tr>
+							<td>20000원</td>
+							<td>무료</td>
+							<td>=20000원</td>
+						</tr>
+					<!-- 반복문 끝 -->
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<%
+			}
+		%>
+		<div class="row">
+			<div class="col-8 text-right">
+				<a href="/order/orderform.jsp?product_no=?" class="btn btn-dark btn-lg" role="button" onclick="orderAll()"><small>전체상품주문</small></a>
+				<a href="/order/orderform.jsp?product_no=?" class="btn btn-secondary btn-lg" role="button" onclick="orderWithCheck()"><small>선택상품주문</small></a>
+			</div>
+			<div class="col-4 text-right">
+				<a href="home.jsp" class="btn btn-outline-secondary btn-lg" role="button"><small>쇼핑계속하기</small></a>
+			</div>
+		</div>
+		<!-- WishList가 있는가? jsp 있으면 출력하기 -->
+		<!-- 
+			 userid로 위시리스트 찾기 
+			 List<wishList> wishLists = getWishListByUserId(user.getUsername)
+			 if(!wishLists.isEmpty()) {
+		 -->
+		 <div class="row">
+			<div class="col-12">
+			<!-- wishList에 있는 상품번호로 상품정보 찾기 -->
+				<p style="padding-top: 20px; font-weight: bold; font-size: 12px;">관심상품 (products.legnth)</p>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<table class="table text-center" style="width: 1125px;">
+						<thead>
+							<tr>
+								<th><input type="checkbox" /></th>
+								<th>이미지</th>
+								<th colspan="5">상품정보</th>
+								<th>판매가</th>
+								<th>수량</th>
+								<th>적립금</th>
+								<th>배송구분</th>
+								<th>배송비</th>
+								<th>합계</th>
+								<th colspan="2">선택</th>
+							</tr>
+						</thead>
+						<tbody>
+						<!-- 반복문 시작 -->
+							<tr>
+								<td><input type="checkbox" /></td>
+								<td><a href="product/detail.jsp?product_no=?"><img src="../resources/images/1.jpg" alt="" width="80" height="80" /></a></td>
+								<td colspan="5">
+									<a href="product/detail.jsp?product_no=?">product.getproductname()</a>
+								</td>
+								<td><!-- product.getproductprice() -->1000원</td>
+								<td><!-- product.getproductstock() <-->1</td>
+								<td>-</td>
+								<td>기본배송</td>
+								<td>무료</td>
+								<td>price() * stock()</td>
+								<td colspan="2">
+									<div class="btn-group-vertical">
+									  <a href="/order/orderform.jsp?product_no=?" class="btn btn-secondary btn-sm" role="button">주문하기</a>
+									  <button type="button" class="btn btn-outline-secondary btn-sm" onclick="wishList() and delete cart" id="wishlist">장바구니담기</button>
+									  <button type="button" class="btn btn-outline-secondary btn-sm" onclick="deleteCart(1)" >삭제</button>
+									</div>
+								</td>
+							</tr>
+						<!-- 반복문 끝 -->
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="list-group">
+					<div class="list-group-item list-group-item-action">
+						<p>이용안내</p>
+						<p style="font-weight: bold;">장바구니 이용안내</p>
+						<h6><span class="badge badge-secondary">1</span>선택하신 상품의 수량을 변경하시려면 수량변경 후 [변경]버튼을 누르시면 됩니다.</h6>
+						<h6><span class="badge badge-secondary">2</span>[쇼핑계속하기]버튼을 누르시면 쇼핑을 계속 하실 수 있습니다.</h6>
+						<h6><span class="badge badge-secondary">3</span>장바구니와 관심상품을 이용하여 원하시는 상품만 주문하거나</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%@ include file="../common/footer.jsp" %>
+</body>
+</html>

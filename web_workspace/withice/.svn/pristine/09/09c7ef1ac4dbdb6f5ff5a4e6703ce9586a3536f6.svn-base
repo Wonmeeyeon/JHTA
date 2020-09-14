@@ -1,0 +1,24 @@
+# INSERT MAIN ORDER
+order.insertOrder=insert into withice_order \
+				  (order_no, order_price,user_id) \
+				  values \
+				  (withice_order_seq.nextval,?,?)
+# INSERT ORDER DETAIL
+order.insertOrderDetail=insert into withice_order_detail \
+						(order_detail_no, order_detail_price, order_amount, product_no, order_no) \
+						values \
+						(withice_order_detail_seq.nextval,?,?,?,?)
+# INSERT ORDER ADDRESS
+order.insertOrderAddress=insert into withice_order_address \
+						 (address_order_no, address_postal_code, address_main, address_sub, address_phone \
+						 ,address_receiver, address_content, order_no) \
+						 values \
+						 (withice_order_address_seq.nextval,?,?,?,?,?,?,?)
+						 
+# GET ORDER
+order.getOrderNoByUserIdRownum=select * \
+							   from withice_order \
+							   where rownum = 1 \
+							   and user_id = ? \
+							   order by order_no desc
+							   

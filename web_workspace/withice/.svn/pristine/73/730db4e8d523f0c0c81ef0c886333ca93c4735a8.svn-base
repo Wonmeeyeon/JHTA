@@ -1,0 +1,68 @@
+package com.withice.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.withice.util.ConnectionUtil;
+import com.withice.util.QueryUtil;
+import com.withice.vo.QuestionCategory;
+
+public class QuestionDao {
+	
+	public List<QuestionCategory> getCategories() throws SQLException {
+		List<QuestionCategory> categories = new ArrayList<QuestionCategory>();
+		
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("question.getCategories"));
+		ResultSet rs = pstmt.executeQuery();
+		
+		while(rs.next()) {
+			QuestionCategory  category = new QuestionCategory();
+			
+			category.setNo(rs.getInt("questio_cate_no"));
+			category.setTitle(rs.getString("question_cate_name"));
+			category.setType(rs.getString("question_cate_type"));
+			
+			categories.add(category);
+			
+		}
+		
+		rs.close();
+		pstmt.close();
+		connection.close();
+		
+		return categories;
+		
+		
+	}
+	
+	public List<QuestionCategory> getCategoryTitle() throws SQLException {
+		List<QuestionCategory> categories = new ArrayList<QuestionCategory>();
+		
+		Connection connection =ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("question.getCategoryTitles"));
+		ResultSet rs = pstmt.executeQuery();
+		
+		while(rs.next()) {
+			QuestionCategory  category = new QuestionCategory();
+			
+			category.setNo(rs.getInt("questio_cate_no"));
+			category.setTitle(rs.getString("question_cate_name"));
+			category.setType(rs.getString("question_cate_type"));
+			
+			categories.add(category);
+			
+		}
+		
+		rs.close();
+		pstmt.close();
+		connection.close();
+		
+		return categories;
+	}
+
+}

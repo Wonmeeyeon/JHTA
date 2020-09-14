@@ -1,0 +1,11 @@
+package oop9;
+
+public class NormalTv {
+	
+	private Monitor monitor;	// Monitor류 객체를 담는 멤버변수
+	
+	public void watch() {
+		
+	}
+
+}

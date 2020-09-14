@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+      <!-- 
+      	  ConsoleOutput 혹은 FileOutput
+      	  Reporter 객체 생성 주문하기
+      	  
+      	  ConsoleOutput을 Reporter의 output 필드에 조립시키기
+       -->
+       
+     <!-- ConsoleOutput객체 생성 지시 -->
+     <!-- ConsoleOutput객체를 생성하고, x라는 이름으로 관리해라. -->
+     <bean id="consoleOutput" class="kr.co.jhta.di.service.ConsoleOutput"></bean>
+     
+     <!-- FileOutput 객체 -->
+     <bean id="fileOutput" class="kr.co.jhta.di.service.FileOutput">
+     	<property name="directory" value="c:/temp"></property>
+     	<property name="filename" value="step5.txt"></property>
+     </bean>
+     
+     <!--Reporter객체 생성 지시  -->
+     <!-- Reporter객체를 생성하고, y라는 이름으로 관리해라 -->
+     <bean id="reporter" class="kr.co.jhta.di.service.step5.Reporter">
+     	<!-- 생성된 Reporter객체의 output필드 (멤버변수)에 x라는 이름으로 참조되는 객체를 찾아서 연결지어라. -->
+     	<property name="output" ref="consoleOutput"></property>
+     </bean>
+ </beans>

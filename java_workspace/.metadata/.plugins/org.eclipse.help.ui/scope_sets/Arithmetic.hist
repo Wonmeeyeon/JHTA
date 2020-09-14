@@ -1,0 +1,6 @@
+#Wed Mar 11 10:58:32 KST 2020
+__DEFAULT__=false
+org.eclipse.sdk.Eclipse.master=true
+org.eclipse.sdk.Google.master=true
+org.eclipse.help.ui.localSearch.master=true
+expression=Arithmetic

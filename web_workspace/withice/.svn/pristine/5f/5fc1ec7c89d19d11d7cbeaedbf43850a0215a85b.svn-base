@@ -1,0 +1,22 @@
+<%@page import="com.withice.vo.Reply"%>
+<%@page import="com.withice.dao.ReplyDao"%>
+<%@page import="com.withice.util.NumberUtil"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<%
+	request.setCharacterEncoding("utf-8");
+	
+	int replyNo = NumberUtil.stringToInt(request.getParameter("replyno"));
+	String content = request.getParameter("content");
+	int reviewNo = NumberUtil.stringToInt(request.getParameter("reviewno"));
+	
+	ReplyDao replyDao = new ReplyDao();
+	Reply reply = new Reply();
+	reply.setContent(content);
+	reply.setReplyNo(replyNo);
+	
+	replyDao.updateReply(reply);
+	response.sendRedirect("/withice/board/review/detail.jsp?reviewno="+reviewNo);
+	
+%>

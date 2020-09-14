@@ -1,0 +1,134 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="/withice/css/naviAndFooter.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="/withice/js/navi.js"></script>
+<style type="text/css">
+ 	th {
+ 		background-color: #E2E2E2;
+ 		width: 15%;
+ 	}
+ 	#textbox {
+ 		width:150px;
+ 		height:30px;
+ 		font-size:12px;
+ 	}
+ </style>
+</head>
+<body>
+<%@ include file="../../common/navbar.jsp"%>
+<div class="container">
+	<div class="body">
+		<div class="text-right">
+				<p>Home > My Page > <span title="현재 페이지">Address Book</span></p>
+		</div>
+		<h4>ADDRESS BOOK</h4>
+		<hr />
+		<form id="address-form" method="post" action="addressregister.jsp">
+			<div class="table">
+				<table class="table table-bordered">
+					<tbody>
+						<tr>
+							<th>배송지명</th>
+							<td><input type="text" /></td>
+						</tr>
+						<tr>
+							<th>성명</th>
+							<td><input type="text" /></td>
+						</tr>
+						<tr>
+							<th>주소</th>
+							<td><input type="text" /></td>
+						</tr>
+						<tr>
+							<th>일반전화</th>
+								<td><select name="tel1" id="">
+		 								<option value="1">02</option>
+		 								<option value="2">031</option>
+		 								<option value="3">032</option>
+		 								<option value="4">033</option>
+		 								<option value="5">041</option>
+		 								<option value="6">042</option>
+		 								<option value="7">043</option>
+		 								<option value="8">051</option>
+					 					<option value="9">052</option>
+					 					<option value="10">053</option>
+					 					<option value="11">054</option>
+					 					<option value="12">055</option>
+					 					<option value="13">061</option>
+					 					<option value="14">062</option>
+					 					<option value="15">063</option>
+					 					<option value="16">064</option>
+					 					<option value="17">0502</option>
+					 					<option value="18">0503</option>
+					 					<option value="19">0504</option>
+					 					<option value="20">0505</option>
+					 					<option value="21">0506</option>
+					 					<option value="22">0507</option>
+					 					<option value="23">070</option>
+					 					<option value="24">010</option>
+					 					<option value="25">011</option>
+					 					<option value="26">016</option>
+					 					<option value="27">017</option>
+					 					<option value="28">018</option>
+					 					<option value="29">019</option>
+					 					<option value="30">0508</option>
+	 								</select> -
+				 					<input type="text" name="tel2" style="width: 70px; height: 25px;"/> -
+				 					<input type="text" name="tel3" style="width: 70px; height: 25px;"/>
+				 				</td>
+						</tr>
+						<tr>
+							<th>휴대전화 <img src="../images/userimage/circle-16.png" width="5px;" height="5px;" /></th>
+							<td><select name="cell1" id="">
+	 							<option value="1">010</option>
+	 							<option value="2">011</option>
+	 							<option value="3">016</option>
+	 							<option value="4">017</option>
+	 							<option value="5">018</option>
+	 							<option value="6">019</option>
+	 						</select> -
+	 						<input type="text" name="cell2" style="width: 50px; height: 25px;"/> -
+	 						<input type="text" name="cell3" style="width: 50px; height: 25px;"/>
+	 						</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="text-right">
+	 			<a href="addressregister.jsp" onclick="" class="btn btn-outline-dark btn-sm">등록</a>
+	 			<a href="../addressform.jsp" onclick="" class="btn btn-light btn-sm">취소</a>
+	 		</div>
+		</form>
+		<hr />
+		<div class="table">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>배송주소록 유의사항</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1. 배송 주소록은 최대 10개까지 등록할 수 있으며, 별도로 등록하지 않을 경우 최근 배송 주소록 기준으로 자동 업데이트 됩니다.</td>
+					</tr>
+					<tr>
+						<td>2. 자동 업데이트를 원하지 않을 경우 주소록 고정 선택을 선택하시면 선택된 주소록은 업데이트 대상에서 제외됩니다.</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<%@ include file="../../common/footer.jsp" %>
+</body>
+</html>

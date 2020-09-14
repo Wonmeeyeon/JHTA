@@ -1,0 +1,4 @@
+review.getAllReview = select * \
+					  from withice_reviews
+
+review.gettotalCount

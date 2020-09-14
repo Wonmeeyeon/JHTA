@@ -1,0 +1,11 @@
+package oop9;
+
+public class NormalTv {
+	
+	private Monitor monitor;
+	
+	public void watch() {
+		
+	}
+
+}

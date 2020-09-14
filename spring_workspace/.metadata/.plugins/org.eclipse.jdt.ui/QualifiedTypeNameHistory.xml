@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="kr.co.jhta.di.service.Output"/>
+<fullyQualifiedTypeName name="javax.xml.bind.annotation.adapters.CollapsedStringAdapter"/>
+<fullyQualifiedTypeName name="kr.co.jhta.di.service.ConsoleOutput"/>
+<fullyQualifiedTypeName name="kr.co.jhta.di.service.Reporper"/>
+</qualifiedTypeNameHistroy>

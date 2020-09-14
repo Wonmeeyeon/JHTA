@@ -1,0 +1,10 @@
+package kr.co.jhta.di.service.step3;
+
+public class Main {
+	
+	public static void main(String[] args) {
+		
+		Reporter reporter  = new Reporter();
+		reporter.report("인터페이스 의존", "직접 의존하는 객체를 생성하지 않는다.");
+	}
+}

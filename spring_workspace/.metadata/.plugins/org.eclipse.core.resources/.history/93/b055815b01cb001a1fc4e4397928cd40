@@ -1,0 +1,43 @@
+package kr.co.jhta.di.service.step4;
+
+import java.io.FileReader;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+
+public class Factory {
+
+	private Map<String, Object> beanMap = new HashMap<>();
+	
+	public Factory() {
+		createBean();
+	}
+	
+	private void createBean() {
+		try {
+			// config.properties 설정파일 정보 읽기
+			System.out.println("config.properties 파일을 읽습니다.");
+			Properties prop = new Properties();
+			prop.load(new FileReader("src/main/java/kr/co/jhta/di/service/step4/config.properties"));
+			
+			String reporterClassName =prop.getProperty("reporter.className");
+			String outputClassName =prop.getProperty("outputer.className");
+			System.out.println("리포트클래스명: " + reporterClassName);		
+			System.out.println("아웃풋클래스명: " + outputClassName);
+			
+			System.out.println("객체를 생성합니다.");
+			Class.forName(reporterClassName).newInstance();
+			Class.forName(outputClassName).newInstance();
+					
+			
+		}catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public Object getBean(String name) {
+		
+		return null;
+	}
+	
+}

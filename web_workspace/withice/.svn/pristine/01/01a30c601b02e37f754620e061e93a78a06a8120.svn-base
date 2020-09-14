@@ -1,0 +1,123 @@
+
+function deleteAllConfirmByCart() {
+	var check = confirm("장바구니를 비우시겠습니까?");
+	if(check == true){
+		alert("장바구니를 비었습니다.");
+		document.getElementById("deletecart").setAttribute("href", "/withice/order/deleteallcart.jsp");
+	} else{
+		document.getElementById("deletecart").setAttribute("href", "/withice/order/basket.jsp");
+	}
+}
+function deleteAllConfirmByWish() {
+	var check1 = confirm("관심상품을 비우시겠습니까?");
+	if(check1 == true){
+		alert("관심상품를 비었습니다.");
+		document.getElementById("deletewish").setAttribute("href", "/withice/order/deleteallwish.jsp");
+	} else{
+		document.getElementById("deletewish").setAttribute("href", "/withice/order/basket.jsp");
+	}
+}
+// 관심상품 등록 체크박스
+function addWishListWithChecked() {
+	// 모든 체크박스를 조회한다.
+	var checkboxs = document.querySelectorAll('[name=no]');
+	for (var i =0; i<checkboxs.length; i++) {	// 체크박스를 순회하면서
+		var checkbox = checkboxs[i];
+		if(checkbox.checked) {			// 체크박스가 체크된 경우
+			var no = checkbox.value;	// 그 체크박스의 value값(번호)을 조회한다.
+			addWishlist(no);				// 위에서 정의한 함수를 사용해서 해당번호의 행을 삭제한다.
+		}
+	}
+}
+
+function toggleChecked() {
+	// 제목줄의 체크박스를 조회한다.
+	var checkbox = document.querySelector("input[name=checkall]");
+	// 제목줄의 체크박스 체크상태를 조회한다.
+	var checkedStatus = checkbox.checked;
+	
+	// 연락처행의 모든 체크박스를 조회한다.
+	var checkboxs = document.querySelectorAll("input[name=no]");
+	for (var i =0; i<checkboxs.length; i++){	// 연락처행의 체크박스를 순회하면서
+		checkboxs[i].checked = checkedStatus;	// 제목줄의 체크박스 체크상태와 같게 만든다.
+	}
+}
+
+
+function changeAllCheckbox() {
+	var checkboxs = document.querySelectorAll("input[name=no]");
+	
+	var totalCheckboxCount = checkboxs.length;	// 전체 체크박스 갯수
+	var checkedCount = 0;						// 체크된 체크박스 갯수
+	for (var i=0; i<checkboxs.length; i++){
+		if (checkboxs[i].checked) {				// 체크박스가 체크된 상태
+			checkedCount++;						// 체크된 체크박스 갯수를 1증가시킨다
+		}
+	}
+	
+	// 연락처행의 체크박스 갯수와 체크된 체크백스 갯수가 동일하면
+	// 모두 체크된 경우고, 그 외는 하나이상 체크되지 않은 상황이다.
+	
+	var checkbox = document.querySelector("input[name=checkall]");
+	if (totalCheckboxCount == checkedCount){
+		checkbox.checked = true;
+	} else {
+		checkbox.checked = false;
+	}
+}
+
+//체크박스 체크된 상품 삭제하기
+function removeCheckedCart() {
+	// 모든 체크박스를 조회한다.
+	var checkboxs = document.querySelectorAll('[name=no]');
+	for (var i =0; i<checkboxs.length; i++) {	// 체크박스를 순회하면서
+		var checkbox = checkboxs[i];
+		if(checkbox.checked) {			// 체크박스가 체크된 경우
+			var no = checkbox.value;	// 그 체크박스의 value값(번호)을 조회한다.
+			deleteCart(no);				// 위에서 정의한 함수를 사용해서 해당번호의 행을 삭제한다.
+		}
+	}
+}
+// 장바구니 비우기
+function removeAllCarts() {
+	var checkboxs = document.querySelectorAll('[name=no]');
+	for (var i =0; i<checkboxs.length; i++) {	
+		var checkbox = checkboxs[i];
+		var no = checkbox.value;
+		deleteCart(no);
+	}
+}
+// 버튼누르면 삭제하기
+function deleteCart(productNo) {
+	var xhr = new XMLHttpRequest();
+	
+	xhr.open("GET", "delete.jsp?productno="+productNo);
+	xhr.send;
+}
+// 전체주문하기
+function orderAll() {
+	var checkboxs = document.querySelectorAll('[name=no]');
+	for (var i =0; i<checkboxs.length; i++) {	
+		var checkbox = checkboxs[i];
+		var no = checkbox.value;
+		addOrder(no);
+	}
+}
+// 주문하기
+function addOrder(productNo){
+	var xhr = new XMLHttpRequest();
+	
+	xhr.open("GET", "order.jsp?productno="+productNo);
+	xhr.send;
+}
+// 선택주문하기
+function addWishListWithChecked() {
+	var checkboxs = document.querySelectorAll('[name=no]');
+	for (var i =0; i<checkboxs.length; i++) {
+		var checkbox = checkboxs[i];
+		if(checkbox.checked) {			
+			var no = checkbox.value;	
+			addOrder(no);				
+		}
+	}
+}

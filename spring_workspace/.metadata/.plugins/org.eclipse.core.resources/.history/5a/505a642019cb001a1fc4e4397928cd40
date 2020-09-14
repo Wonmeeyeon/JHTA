@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+      <!-- 
+      	  ConsoleOutput 혹은 FileOutput
+      	  Reporter 객체 생성 주문하기
+      	  
+      	  ConsoleOutput을 Reporter의 output 필드에 조립시키기
+       -->
+       
+     <!-- ConsoleOutput객체 생성 지시 -->
+     <!-- ConsoleOutput객체를 생성하고, x라는 이름으로 관리해라. -->
+     <bean name="x" class="kr.co.jhta.di.service.ConsoleOutput"></bean>
+     
+     <!--Reporter객체 생성 지시  -->
+     <bean name="y" class="kr.co.jhta.di.service.step5.Reporter">
+     	<property name="output" ref="x"></property>
+     </bean>
+ </beans>

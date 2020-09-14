@@ -1,0 +1,38 @@
+package com.withice.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.withice.util.ConnectionUtil;
+import com.withice.util.QueryUtil;
+import com.withice.vo.ManagerBoardCate;
+
+public class ManagerBoardDao {
+	
+	public List<ManagerBoardCate> getCates() throws SQLException {
+		List<ManagerBoardCate> cates  = new ArrayList<ManagerBoardCate>();
+		
+		Connection connection = ConnectionUtil.getConnection();
+		PreparedStatement pstmt = connection.prepareStatement(QueryUtil.getSQL("managerBoard.gerCates"));
+		ResultSet rs = pstmt.executeQuery();
+		
+		while(rs.next()) {
+			ManagerBoardCate cate = new ManagerBoardCate();
+			
+			cate.setNo(rs.getInt("MANAGER_BOARD_CATE_NO"));
+			cate.setTitle(rs.getString("MANAGER_BOARD_CATE_NAME"));
+			
+			cates.add(cate);
+			
+		}
+		rs.close();
+		pstmt.close();
+		return cates;
+		
+		
+	}
+}

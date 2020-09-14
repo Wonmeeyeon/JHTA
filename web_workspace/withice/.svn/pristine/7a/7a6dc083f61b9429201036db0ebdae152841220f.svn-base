@@ -1,0 +1,74 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+<div class="navi"></div>
+<div class="body">
+	<div class="table">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>배송주소록 유의사항</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1. 배송 주소록은 최대 10개까지 등록할 수 있으며, 별도로 등록하지 않을 경우 최근 배송 주소록 기준으로 자동 업데이트 됩니다.</td>
+				</tr>
+				<tr>
+					<td>2. 자동 업데이트를 원하지 않을 경우 주소록 고정 선택을 선택하시면 선택된 주소록은 업데이트 대상에서 제외됩니다.</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="text-center">
+		<table class="table">
+			<thead>
+				<tr>
+					<th><input type="checkbox" /></th>
+					<th>주소록 고정</th>
+					<th>배송지명</th>
+					<th>수령인</th>
+					<th>일반전화</th>
+					<th>휴대전화</th>
+					<th>주소</th>
+					<th>배송지관리</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><input type="checkbox" /></td>
+					<td><a class="btn btn-outline-secondary" href="">해제</a></td>
+					<td>집</td>
+					<td>홍길동</td>
+					<td>02-111-1111</td>
+					<td>010-1111-1111</td>
+					<td>서울시 종로구 봉익동 디아망빌딩 4층 어쩌구저쩌구</td>
+					<td>
+						<a class="btn btn-outline-dark" href="">적용</a>
+						<a class="btn btn-light" href="">수정</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="text-center">
+ 			<a href="" onclick="" class="btn btn-outline-dark btn-sm">선택삭제</a>
+ 			<a href="../addressregister.jsp" onclick="" class="btn btn-light btn-sm">등록</a>
+ 		</div>
+</div>
+<div class="footer"></div>
+</div>
+</body>
+</html>

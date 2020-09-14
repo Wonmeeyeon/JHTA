@@ -1,0 +1,13 @@
+
+						
+eventBoard.getTotalCnt = select count(*) cnt	\
+					   from withice_manager_board \
+                       where manager_board_cate_no in(2,3)
+                       
+eventBoard.getEvents = select * \
+						from(select MANAGER_BOARD_NO, MANAGER_BOARD_TITLE, MANAGER_BOARD_CONTENT, MANAGER_BOARD_VIEW_COUNT, \
+						MANAGER_BOARD_REGISTERED_DATE, MANAGER_BOARD_CATEGORY, USER_ID, MANAGER_BOARD_CATE_NO, row_number()over(order by MANAGER_BOARD_NO desc) rn \
+						from WITHICE_MANAGER_BOARD \
+						where MANAGER_BOARD_CATE_NO in(2,3)) \
+						where rn >=? and rn <=?
+

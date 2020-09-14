@@ -1,0 +1,38 @@
+address.registerAddress = insert into withice_address (address_no, address_name, address_postal_code, address_main, \
+						  address_sub, address_telphone, address_phone, address_receiver, user_id, address_home) \
+						  values (withice_address_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+						  
+address.getAddressById = select address_no, address_name, address_postal_code, \
+						 address_main, address_sub, address_telphone, address_phone, address_receiver, user_id, address_home \
+						 from withice_address \
+						 where user_id = ?
+						 
+address.updateAddressById = update withice_address \
+							set \
+								address_name = ?, \
+								address_receiver = ?, \
+	    						address_postal_code = ?, \
+	    						address_main = ?, \
+	    						address_sub = ?, \
+	    						address_telphone = ?, \
+	    						address_phone = ? \
+							where user_id = ?
+						
+address.getAdressByNo = select address_name, address_postal_code, address_main, address_sub, address_telphone, address_phone, \
+						address_receiver \
+						from withice_address \
+						where address_no = ?
+						
+address.updateAddressByNo = update withice_address \
+							set \
+								address_name = ?, \
+								address_receiver = ?, \
+	    						address_postal_code = ?, \
+	    						address_main = ?, \
+	    						address_sub = ?, \
+	    						address_telphone = ?, \
+	    						address_phone = ? \
+							where address_no = ?
+							
+address.deleteAddress = delete from withice_address \
+						where address_no = ?

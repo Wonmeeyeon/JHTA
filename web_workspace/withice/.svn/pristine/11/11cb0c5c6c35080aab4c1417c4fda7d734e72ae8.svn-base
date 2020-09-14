@@ -1,0 +1,204 @@
+<%@page import="com.withice.vo.ProductTag"%>
+<%@page import="com.withice.vo.Product"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.withice.dao.ProductDao"%>
+<%@page import="com.withice.dto.CategoryAndCnt"%>
+<%@page import="com.withice.util.NumberUtil"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/withice/css/naviAndFooter.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="/withice/js/navi.js"></script>
+  <style type="text/css">
+  	.breadcrumb {
+  		background-color: white;
+  		padding: 5px;
+  		font-size: 10px;
+  	}
+  	
+  	.breadcrumb a {
+  		color: gray;
+  		text-decoration: none;
+  	}
+  	
+  	
+  	.breadcrumb-item+.breadcrumb-item::before {
+    display: inline-block;
+    padding-right: .5rem;
+    color: #6c757d;
+    content: ">";
+	}
+	
+	.product-list-menu li {
+		border: none;
+		font-size: 11px;
+		padding: 0;
+		font-weight: 200;
+	}
+	
+	.card, .card-header, .card-body, .card-footer {
+		background-color: white;
+		border: none;
+		font-size: 11px;
+		text-align: left;
+		padding: 0;
+		font-weight: 500;
+	}
+	
+	.card-header {
+		border-bottom: 1px solid #e8e8e8;
+		margin-top: 14px;
+		padding-bottom: 5px;
+	}
+	.card-body p {
+		margin-top: 6px;
+		margin-bottom: 3px;
+	}
+	.card-footer {
+		margin-top: 6px;
+		margin-bottom:5px;
+	}
+	.card-status {
+		margin-top: 6px;
+		margin-bottom:40px;
+	}
+	.card-status i {
+		padding-right: 5px;
+		font-size: 17px;
+	}
+	.card-status a {
+		color: darkgray;
+	}
+	.card-status a:hover {
+		color: lightgray;
+	}
+	
+  </style>
+</head>
+<body>
+<%@ include file="../common/navbar.jsp"%>
+<div class="container">
+	<!-- 현재위치 -->
+	<div class="row">
+		<div class="col-12">
+			<ul class="breadcrumb float-right">
+				<li class="breadcrumb-item"><a href="../home.jsp">Home</a></li>
+			<%  
+				int cateNo = NumberUtil.stringToInt(request.getParameter("cateno"));
+				int mainNo = cateNo;
+				Category category = categoryDao.getCategoryWithMain(cateNo);
+				
+				if (category.getMainCateNo() != 0) {
+					mainNo = category.getMainCateNo();
+			%>					
+				<li class="breadcrumb-item"><a href="productList.jsp?cateno=<%=category.getMainCateNo() %>" style="color: black;"><%=category.getMainCateName() %></a></li>
+			<%
+				}
+			%>
+				<li class="breadcrumb-item"><a href="#" style="color: black;"><%=category.getName() %></a></li>
+			</ul>
+		</div>
+	</div>
+	<!-- 현재위치 -->
+	
+	<!-- body top 시작 -->
+	<%
+		List<CategoryAndCnt> subCategorys = categoryDao.getCategoryAndCntByNo(mainNo);
+	%>
+	<div style="font-size: 15px"><%=category.getName() %></div>
+	<div class="product-list-menu m-3">
+		<ul class="list-group list-group-horizontal">
+		<%
+			for (CategoryAndCnt cate : subCategorys) {
+		%>
+		  <li class="list-group-item mr-3 "><%=cate.getName() %> <span style="color: gray;">(<%=cate.getCount() %>)</span></li>
+		<%
+			}
+		%>
+		</ul>
+	</div>
+	<!-- body top 끝 -->
+	
+	<!-- body main 시작 -->
+	<%
+		ProductDao productDao = new ProductDao();
+		List<Product> products = new ArrayList<Product>();
+		
+		if (category.getMainCateNo() != 0) {
+			products = productDao.getProductByCategory(cateNo);
+		} else {
+			products = productDao.getProductByMainCategory(cateNo);
+		}
+	%>
+	<div class="mt-5">
+		<div class="d-flex justify-content-between">
+			<div>
+				<span class="font-weight-bold small"><%=products.size() %></span>
+				<span style="color: gray; font-size: 10px;"> IN THIS CATEGORY</span>
+			</div>
+			<div class="product-list-menu">
+				<ul class="list-group list-group-horizontal">
+				  <li class="list-group-item mr-4 font-weight-bold"><a>NEW</a></li>
+				  <li class="list-group-item mr-4 font-weight-bold"><a>NAME</a></li>
+				  <li class="list-group-item mr-4 font-weight-bold"><a>LOW PRICE</a></li>
+				  <li class="list-group-item mr-4 font-weight-bold"><a>HIGH PRICE</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- body main 끝 -->
+	<!-- 상품 리스트 시작 -->
+		<div class="row mt-5">
+	<%
+			for (Product pro : products) {
+	%>
+			<div class="col-3 mb-1">
+				<div class="card">
+					<img class="img-thumnail" width="100%" src="/withice/images/product-images/<%=pro.getThumbnail()%>">
+					<div class="card-header"><%=pro.getName() %></div>
+					<div class="card-body">
+					<%
+						if (pro.getComment() != null) {
+					%>
+						<p style="color: gray;"><%=pro.getComment() %><p>
+					<%
+						}
+					%>
+						<p><%=pro.getPrice()%></p>
+					</div>
+					<div class="card-footer">
+					<%
+						List<ProductTag> tags = productDao.getProductTagsByNo(pro.getNo());
+						for (ProductTag tag : tags) {
+					%>
+						<span><img src="/withice/images/tag/<%=tag.getTagThumbnail()%>"/></span>
+					<%
+						}
+					%>
+					</div>
+					<div class="card-status">
+						<span><a href="/withice/login/loginform.jsp"><i class="fa fa-cart-plus"></i></a></span>
+						<span><a href=""><i class="fa fa-heart-o"></i></a></span>
+						<span><a href=""><i class="fa fa-external-link"></i></a></span>
+					</div>
+				</div>
+			</div>
+		<%
+			}
+		%>
+		</div>
+		<!-- 상품리스트 끝 -->
+</div>
+<%@ include file="../common/footer.jsp" %>
+</body>
+</html>

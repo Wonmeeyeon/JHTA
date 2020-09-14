@@ -1,0 +1,6 @@
+managerBoard.getCateByNo = select * \
+							from withice_manager_board_cate \
+							where manager_board_cate_no = ?
+							
+managerBoard.gerCates = select * \
+						from withice_manager_board_cate

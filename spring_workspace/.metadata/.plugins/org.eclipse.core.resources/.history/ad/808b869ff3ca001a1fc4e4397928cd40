@@ -1,0 +1,9 @@
+package kr.co.jhta.di.service.step2;
+
+import kr.co.jhta.di.service.Output;
+
+public class Reporter {
+	
+	// 구체적인 구현클래스가 아닌 인터페이스 타입의 변수를 선언한다.
+	private Output output = new 
+}

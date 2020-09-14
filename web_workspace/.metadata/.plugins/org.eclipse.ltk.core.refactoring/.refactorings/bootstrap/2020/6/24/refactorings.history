@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move &apos;sample1.jsp, sample2.jsp, sample3.jsp, sample4.jsp, sample5.jsp, sample6.jsp&apos; to &apos;grid&apos;" description="Move 6 resources to &apos;grid&apos;" destination="WebContent/grid" element1="WebContent/sample1.jsp" element2="WebContent/sample2.jsp" element3="WebContent/sample3.jsp" element4="WebContent/sample4.jsp" element5="WebContent/sample5.jsp" element6="WebContent/sample6.jsp" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="6" stamp="1591834208580" updateReferences="true"/>
+</session>
